@@ -68,8 +68,8 @@ def predict():
     
     new_df = pd.DataFrame(data, columns = ['SeniorCitizen', 'MonthlyCharges', 'TotalCharges', 'gender', 
                                            'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService',
-                                           'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
-                                           'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+                                           'OnlineSecurity', 'OnlineBackup', 'TechSupport',
+                                             'Contract', 'PaperlessBilling',
                                            'PaymentMethod', 'tenure'])
     
     df_2 = pd.concat([df_1, new_df], ignore_index = True) 
