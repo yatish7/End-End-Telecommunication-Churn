@@ -106,6 +106,9 @@ tel_data_copy['tenure_group'].value_counts() # This will count the records in ea
 
 #drop column customerID and tenure this are not needed
 tel_data_copy.drop(columns= ['customerID','tenure'], axis=1, inplace=True)
+# Assuming your DataFrame is named 'tel_data'
+tel_data_copy.drop(['DeviceProtection', 'StreamingTV', 'StreamingMovies'], axis=1, inplace=True)
+
 tel_data_copy.head()
 
 """**In order to drop columns always have domain knowledge and then see whether the column is needed or not and drop it**
