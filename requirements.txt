@@ -10,7 +10,7 @@ decorator==5.1.1
 distlib==0.3.6
 executing==1.2.0
 filelock==3.12.2
-Flask==2.3.2
+Flask==2.0.1
 imutils==0.5.4
 ipykernel==6.23.1
 ipython==8.14.0
