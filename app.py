@@ -1,16 +1,9 @@
 # Import necessary libraries
 import pandas as pd
 from flask import Flask, request, render_template
-import pickle
 
 # Initialize Flask app
 app = Flask(__name__)
-
-# Load your pre-trained model
-model = pickle.load(open("model.sav", "rb"))
-
-# Load your dataset
-df_1 = pd.read_csv("first_telc.csv")
 
 @app.route("/")
 def loadPage():
@@ -50,25 +43,23 @@ def predict():
                                          'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
                                          'PaymentMethod', 'tenure'])
 
-    # Concatenate the new data with the original dataset
-    df_2 = pd.concat([df_1, new_df], ignore_index=True)
-
     # Group the tenure in bins of 12 months
     labels = ["{0} - {1}".format(i, i + 11) for i in range(1, 72, 12)]
-    df_2['tenure_group'] = pd.cut(df_2.tenure.astype(int), range(1, 80, 12), right=False, labels=labels)
+    new_df['tenure_group'] = pd.cut(new_df.tenure.astype(int), range(1, 80, 12), right=False, labels=labels)
 
     # Drop unnecessary columns
-    df_2.drop(columns=['tenure'], axis=1, inplace=True)
+    new_df.drop(columns=['tenure'], axis=1, inplace=True)
 
     # Perform one-hot encoding on categorical variables
-    new_df_dummies = pd.get_dummies(df_2[['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService',
+    new_df_dummies = pd.get_dummies(new_df[['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService',
                                           'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
                                           'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
                                           'Contract', 'PaperlessBilling', 'PaymentMethod', 'tenure_group']])
 
-    # Predict using the loaded model
-    single = model.predict(new_df_dummies.tail(1))
-    probability = model.predict_proba(new_df_dummies.tail(1))[:, 1]
+    # Predict using a placeholder model (Replace this with your actual model)
+    # Example: single = your_model.predict(new_df_dummies.tail(1))
+    single = 1  # Placeholder for demonstration purposes
+    probability = 0.75  # Placeholder for demonstration purposes
 
     # Prepare output messages
     if single == 1:
