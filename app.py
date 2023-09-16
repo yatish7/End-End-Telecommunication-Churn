@@ -1,95 +1,257 @@
-# coding: utf-8
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
 
-import pandas as pd
-from flask import Flask, request, render_template
-import pickle
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-top: 20px;
+        }
 
-app = Flask("__name__")
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-df_1 = pd.read_csv("tel_churn.csv")
+        label {
+            font-weight: bold;
+        }
 
-q = ""
+        /* Text box style */
+        input.small-text-box {
+            width: 100%; /* Make text boxes the same width as labels */
+            padding: 5px; /* Adjust padding as needed */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
-@app.route("/")
-def loadPage():
-    return render_template('home.html', query="")
+        select.small-select-box {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+        }
 
-@app.route("/", methods=['POST'])
-def predict():
-    try:
-        # Extract input values from the form
-        inputQuery1 = request.form['query1']
-        inputQuery2 = request.form['query2']
-        inputQuery3 = request.form['query3']
-        inputQuery4 = request.form['query4']
-        inputQuery5 = request.form['query5']
-        inputQuery6 = request.form['query6']
-        inputQuery7 = request.form['query7']
-        inputQuery8 = request.form['query8']
-        inputQuery9 = request.form['query9']
-        inputQuery10 = request.form['query10']
-        inputQuery11 = request.form['query11']
-        inputQuery13 = request.form['query13']
-        inputQuery16 = request.form['query16']
-        inputQuery17 = request.form['query17']
-        inputQuery18 = request.form['query18']
-        inputQuery19 = request.form['query19']
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block; /* Make it a block-level element */
+            margin: 0 auto; /* Center horizontally */
+        }
 
-        # Check if input values are valid
-        def is_valid_float(value):
-            try:
-                float(value)
-                return True
-            except ValueError:
-                return False
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
 
-        input_fields = [
-            inputQuery1, inputQuery2, inputQuery3, inputQuery4, inputQuery5,
-            inputQuery6, inputQuery7, inputQuery8, inputQuery9, inputQuery10,
-            inputQuery11, inputQuery13, inputQuery16, inputQuery17, inputQuery18, inputQuery19
-        ]
+        .output-group {
+            margin-top: 20px;
+            padding-top: 20px; /* Added gap between form and prediction box */
+            border-top: 1px solid #ddd; /* Added a border above the prediction box */
+        }
 
-        if not all(map(is_valid_float, input_fields)):
-            return render_template('home.html', error_message="Invalid input. Please provide valid numeric values.")
+        .output-group label {
+            font-weight: bold;
+        }
 
-        # Load the model
-        model = pickle.load(open("model.sav", "rb"))
+        /* Text box style for prediction and confidence */
+        input.small-text-box {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
-        # Create a DataFrame from the input data
-        input_data = pd.DataFrame([input_fields], columns=[
-            'SeniorCitizen', 'MonthlyCharges', 'TotalCharges', 'gender',
-            'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService',
-            'OnlineSecurity', 'OnlineBackup', 'TechSupport',
-            'Contract', 'PaperlessBilling',
-            'PaymentMethod', 'tenure'
-        ])
+        h1 {
+            text-align: center;
+            color: #333;
+        }
 
-        # Process the input data and make predictions
-        df_2 = pd.concat([df_1, input_data], ignore_index=True)
-        # Group the tenure in bins of 12 months
-        labels = ["{0} - {1}".format(i, i + 11) for i in range(1, 72, 12)]
-        df_2['tenure_group'] = pd.cut(df_2.tenure.astype(float), range(1, 80, 12), right=False, labels=labels)
-        # Drop column customerID and tenure
-        df_2.drop(columns=['tenure'], axis=1, inplace=True)
-        new_df__dummies = pd.get_dummies(df_2[['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService',
-                                                'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
-                                                'TechSupport',
-                                                'Contract', 'PaperlessBilling', 'PaymentMethod', 'tenure_group']])
-        single = model.predict(new_df__dummies.tail(1))
-        probability = model.predict_proba(new_df__dummies.tail(1))[:, 1]
-        if single == 1:
-            o1 = "This customer is likely to be churned!!"
-            o2 = "Confidence: {}".format(probability * 100)
-        else:
-            o1 = "This customer is likely to continue!!"
-            o2 = "Confidence: {}".format(probability * 100)
-        return render_template('home.html', output1=o1, output2=o2, query1=inputQuery1, query2=inputQuery2,
-                               query3=inputQuery3, query4=inputQuery4, query5=inputQuery5, query6=inputQuery6,
-                               query7=inputQuery7, query8=inputQuery8, query9=inputQuery9, query10=inputQuery10,
-                               query11=inputQuery11, query13=inputQuery13, query16=inputQuery16, query17=inputQuery17,
-                               query18=inputQuery18, query19=inputQuery19)
-    except Exception as e:
-        return render_template('home.html', error_message=f"An error occurred: {str(e)}")
+        /* Style for arranging form groups in rows of 2 */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+        .form-group {
+            flex-basis: calc(50% - 10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/" method="POST" class="col-sm-9">
+                <h1 align='center'>Telecommunication Churn Model</h1>
+                <!-- Row 1 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query4">Gender:</label>
+                        <select class="form-control small-select-box" id="query4" name="query4" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query1">SeniorCitizen:</label>
+                        <select class="form-control small-select-box" id="query1" name="query1" required>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query2">Monthly Charges:</label>
+                        <input type="text" class="form-control small-text-box" id="query2" name="query2" value="{{ output2 }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="query3">Total Charges:</label>
+                        <input type="text" class="form-control small-text-box" id="query3" name="query3" value="{{ output2 }}">
+                    </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query5">Partner:</label>
+                        <select class="form-control small-select-box" id="query5" name="query5" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query6">Dependents:</label>
+                        <select class="form-control small-select-box" id="query6" name="query6" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Row 4 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query7">Phone Service:</label>
+                        <select class="form-control small-select-box" id="query7" name="query7" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query8">Multiple Lines:</label>
+                        <select class="form-control small-select-box" id="query8" name="query8" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            <option value="No Phone Service">No Phone Service</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Row 5 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query9">Internet Service:</label>
+                        <select class="form-control small-select-box" id="query9" name="query9" required>
+                            <option value="DSL">DSL</option>
+                            <option value="Fiber Optic">Fiber Optic</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query10">Online Security:</label>
+                        <select class="form-control small-select-box" id="query10" name="query10" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Row 6 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query11">Online Backup:</label>
+                        <select class="form-control small-select-box" id="query11" name="query11" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query13">Tech Support:</label>
+                        <select class="form-control small-select-box" id="query13" name="query13" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Row 7 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query16">Contract:</label>
+                        <select class="form-control small-select-box" id="query16" name="query16" required>
+                            <option value="Month-to-month">Month-to-month</option>
+                            <option value="One year">One year</option>
+                            <option value="Two year">Two year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query17">Paperless Billing:</label>
+                        <select class="form-control small-select-box" id="query17" name="query17" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Row 8 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="query18">Payment Method:</label>
+                        <select class="form-control small-select-box" id="query18" name="query18" required>
+                            <option value="Electronic check">Electronic check</option>
+                            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                            <option value="Credit card (automatic)">Credit card (automatic)</option>
+                            <option value="Mailed check">Mailed check</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="query19">Tenure:</label>
+                        <input type="text" class="form-control small-text-box" id="query19" name="query19" value="{{ output2 }}">
+                    </div>
+                </div>
+                
+                <!-- Centered Submit Button -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary" name="submit">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Prediction Box -->
+    <div class="container">
+            <u><h1 align="center">OUTPUT</h1></u>
+            <br>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prediction"><u>Prediction:</u></label>
+                    <br><br>
+                    <textarea class="form-control small-text-box" id="prediction" name="prediction" rows="3" cols="75" autofocus>{{ output1 }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="confidence"><u>Confidence:</u></label>
+                    <br><br>
+                    <textarea class="form-control small-text-box" id="confidence" name="confidence" rows="3" cols="75" autofocus>{{ output2 }}</textarea>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
