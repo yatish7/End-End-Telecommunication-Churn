@@ -253,5 +253,17 @@
                 </div>
             </div>
     </div>
+    <script>
+        // JavaScript code to update the textareas with output values
+        document.addEventListener("DOMContentLoaded", function() {
+            // Assuming you have the output1 and output2 values available as JavaScript variables
+            var output1 = "{{output1}}";
+            var output2 = "{{output2}}";
+
+            // Update the prediction and confidence textareas
+            document.getElementById("prediction").value = output1;
+            document.getElementById("confidence").value = output2;
+        });
+    </script>
 </body>
 </html>
