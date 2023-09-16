@@ -41,6 +41,7 @@ pytesseract==0.3.10
 python-dateutil==2.8.2
 pytz==2023.3
 pyzmq==25.1.0
+scikit-learn==1.2.2
 six==1.16.0
 sqlparse==0.4.4
 stack-data==0.6.2
@@ -50,3 +51,4 @@ tzdata==2023.3
 virtualenv==20.23.1
 virtualenvwrapper-win==1.2.7
 wcwidth==0.2.6
+gunicorn
