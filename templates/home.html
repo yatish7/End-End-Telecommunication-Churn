@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/" method="POST" class="col-sm-9">
+                <div class="form-group purple-border">
+                    <label for="query1">SeniorCitizen:</label>
+                    <textarea class="form-control" rows="2" id="query1" name="query1" autofocus>{{query1}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query2">MonthlyCharges:</label>
+                    <textarea class="form-control" rows="2" id="query2" name="query2">{{query2}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query3">TotalCharges:</label>
+                    <textarea class="form-control" rows="2" id="query3" name="query3">{{query3}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query4">gender:</label>
+                    <textarea class="form-control" rows="2" id="query4" name="query4">{{query4}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query5">Partner:</label>
+                    <textarea class="form-control" rows="2" id="query5" name="query5">{{query5}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query6">Dependents:</label>
+                    <textarea class="form-control" rows="2" id="query6" name="query6">{{query6}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query7">PhoneService:</label>
+                    <textarea class="form-control" rows="2" id="query7" name="query7">{{query7}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query8">MultipleLines:</label>
+                    <textarea class="form-control" rows="2" id="query8" name="query8">{{query8}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query9">InternetService:</label>
+                    <textarea class="form-control" rows="2" id="query9" name="query9">{{query9}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query10">OnlineSecurity:</label>
+                    <textarea class="form-control" rows="2" id="query10" name="query10">{{query10}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query11">OnlineBackup:</label>
+                    <textarea class="form-control" rows="2" id="query11" name="query11">{{query11}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query12">DeviceProtection:</label>
+                    <textarea class="form-control" rows="2" id="query12" name="query12">{{query12}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query13">TechSupport:</label>
+                    <textarea class="form-control" rows="2" id="query13" name="query13">{{query13}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query14">StreamingTV:</label>
+                    <textarea class="form-control" rows="2" id="query14" name="query14">{{query14}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query15">StreamingMovies:</label>
+                    <textarea class="form-control" rows="2" id="query15" name="query15">{{query15}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query16">Contract:</label>
+                    <textarea class="form-control" rows="2" id="query16" name="query16">{{query16}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query17">PaperlessBilling:</label>
+                    <textarea class="form-control" rows="2" id="query17" name="query17">{{query17}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query18">PaymentMethod:</label>
+                    <textarea class="form-control" rows="2" id="query18" name="query18">{{query18}}</textarea>
+                </div>
+                <div class="form-group purple-border">
+                    <label for="query19">tenure:</label>
+                    <textarea class="form-control" rows="2" id="query19" name="query19">{{query19}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" name="submit">SUBMIT</button>
+            </form>
+            <div class="col-sm-3">
+                <textarea class="form-control" rows="2" id="output1" name="output1" autofocus>{{output1}}</textarea>
+                <textarea class="form-control" rows="2" id="output2" name="output2" autofocus>{{output2}}</textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
