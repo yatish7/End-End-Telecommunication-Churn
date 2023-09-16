@@ -116,11 +116,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="query2">Monthly Charges:</label>
-                        <input type="text" class="form-control small-text-box" id="query2" name="query2" value="{{query2}}">
+                        <input type="text" class="form-control small-text-box" id="query2" name="query2" value="{{ output2 }}">
                     </div>
                     <div class="form-group">
                         <label for="query3">Total Charges:</label>
-                        <input type="text" class="form-control small-text-box" id="query3" name="query3" value="{{query3}}">
+                        <input type="text" class="form-control small-text-box" id="query3" name="query3" value="{{ output2 }}">
                     </div>
                 </div>
                 <!-- Row 3 -->
@@ -224,7 +224,7 @@
                     </div>
                     <div class="form-group">
                         <label for="query19">Tenure:</label>
-                        <input type="text" class="form-control small-text-box" id="query19" name="query19" value="{{query19}}">
+                        <input type="text" class="form-control small-text-box" id="query19" name="query19" value="{{ output2 }}">
                     </div>
                 </div>
                 
@@ -244,26 +244,14 @@
                 <div class="form-group">
                     <label for="prediction"><u>Prediction:</u></label>
                     <br><br>
-                    <textarea class="form-control small-text-box" id="prediction" name="prediction" rows="3" cols="75" autofocus>{{output1}}</textarea>
+                    <textarea class="form-control small-text-box" id="prediction" name="prediction" rows="3" cols="75" autofocus>{{ output1 }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="confidence"><u>Confidence:</u></label>
                     <br><br>
-                    <textarea class="form-control small-text-box" id="confidence" name="confidence" rows="3" cols="75" autofocus>{{output2}}</textarea>
+                    <textarea class="form-control small-text-box" id="confidence" name="confidence" rows="3" cols="75" autofocus>{{ output2 }}</textarea>
                 </div>
             </div>
     </div>
-    <script>
-        // JavaScript code to update the textareas with output values
-        document.addEventListener("DOMContentLoaded", function() {
-            // Assuming you have the output1 and output2 values available as JavaScript variables
-            var output1 = "{{output1}}";
-            var output2 = "{{output2}}";
-
-            // Update the prediction and confidence textareas
-            document.getElementById("prediction").value = output1;
-            document.getElementById("confidence").value = output2;
-        });
-    </script>
 </body>
 </html>
