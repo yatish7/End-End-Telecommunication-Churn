@@ -3,7 +3,7 @@
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier 
 from sklearn import metrics
 from flask import Flask, request, render_template
 import pickle
@@ -63,13 +63,12 @@ def predict():
     model = pickle.load(open("model.sav", "rb"))
     
     data = [[inputQuery1, inputQuery2, inputQuery3, inputQuery4, inputQuery5, inputQuery6, inputQuery7, 
-             inputQuery8, inputQuery9, inputQuery10, inputQuery11, inputQuery13,
-              inputQuery16, inputQuery17, inputQuery18, inputQuery19]]
+             inputQuery8, inputQuery9, inputQuery10, inputQuery11, inputQuery13, inputQuery16, inputQuery17, inputQuery18, inputQuery19]]
     
     new_df = pd.DataFrame(data, columns = ['SeniorCitizen', 'MonthlyCharges', 'TotalCharges', 'gender', 
                                            'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService',
-                                           'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
-                                           'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+                                           'OnlineSecurity', 'OnlineBackup', 'TechSupport',
+                                           'Contract', 'PaperlessBilling',
                                            'PaymentMethod', 'tenure'])
     
     df_2 = pd.concat([df_1, new_df], ignore_index = True) 
@@ -85,7 +84,7 @@ def predict():
     
     new_df__dummies = pd.get_dummies(df_2[['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'PhoneService',
            'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
-            'TechSupport',
+            'TechSupport', 
            'Contract', 'PaperlessBilling', 'PaymentMethod','tenure_group']])
     
     
