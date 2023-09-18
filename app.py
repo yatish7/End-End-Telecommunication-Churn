@@ -1,7 +1,6 @@
 import sys
 sys.path.append('/Users/yatish/miniconda3/envs/myenv/lib/python3.10/site-packages')
 
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier 
@@ -9,8 +8,22 @@ from sklearn import metrics
 from flask import Flask, request, render_template
 import pickle
 
-
 app = Flask("__name__")
+
+# Load your data and model here
+
+if __name__ == "__main__":
+    # Use Gunicorn as the production server
+    from gunicorn.app.wsgiapp import WSGIApplication
+    class MyApplication(WSGIApplication):
+        def init(self, parser, opts, args):
+            return {
+                'bind': '0.0.0.0:5000',  # Bind to all network interfaces
+                'workers': 4  # Adjust the number of workers as needed
+            }
+
+    MyApplication().run()
+
 
 df_1=pd.read_csv("first_telc.csv")
 
