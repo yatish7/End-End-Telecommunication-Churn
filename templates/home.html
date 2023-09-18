@@ -1,45 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Churn Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
         body {
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
         }
-
+        
         .container {
-            background-color: #fff;
+            background-color: #CEDEBD;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             padding: 20px;
             margin-top: 20px;
         }
-
+        
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            margin-left: 100px;
+            margin-right: 100px;
+            width: 100%;
         }
-
+        
         label {
             font-weight: bold;
+            width: 200%; /* Make the label span the entire container width */
+            display: block; /* Ensure labels are on their own line */
         }
-
-        /* Text box style */
-        input.small-text-box {
-            width: 100%; /* Make text boxes the same width as labels */
-            padding: 5px; /* Adjust padding as needed */
+        
+        .purple-border {
+            border: 1px solid ;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f2edf5;
+        }
+        
+        /* Textarea style */
+        textarea, input[type="text"], select {
+            width: 100%;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-
-        select.small-select-box {
-            width: 100%;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
+        
         .btn-primary {
             background-color: #007bff;
             color: #fff;
@@ -47,211 +55,278 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            display: block; /* Make it a block-level element */
-            margin: 0 auto; /* Center horizontally */
-        }
-
+            display: block; /* Make the button a block-level element */
+            margin-left:55%;
+                }
+        
+        
+        
         .btn-primary:hover {
             background-color: #0056b3;
         }
-
+        
         .output-group {
             margin-top: 20px;
-            padding-top: 20px; /* Added gap between form and prediction box */
-            border-top: 1px solid #ddd; /* Added a border above the prediction box */
+            margin-left:40%;
         }
-
-        .output-group label {
-            font-weight: bold;
-        }
-
-        /* Text box style for prediction and confidence */
-        input.small-text-box {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
+        
         h1 {
             text-align: center;
             color: #333;
+            margin-left:25%;
         }
-
-        /* Style for arranging form groups in rows of 2 */
         .form-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
         }
-
-        .form-group {
-            flex-basis: calc(50% - 10px);
-        }
+        
+        
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <form action="http://localhost:5000/" method="POST" class="col-sm-9">
-                <h1 align='center'>Telecommunication Churn Model</h1>
-                <!-- Row 1 -->
+            <form action="http://localhost:5000/" method="POST">
+                <h1><u>TELECOM CHURN PREDICTION</u></h1>
+                <br>
+                <!-- Group 1 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query4">Gender:</label>
-                        <select class="form-control small-select-box" id="query4" name="query4" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="user_name">Your Name:</label>
+                            <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Enter your name (optional)">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query1">SeniorCitizen:</label>
-                        <select class="form-control small-select-box" id="query1" name="query1" required>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender" name="query4">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- Row 2 -->
+                <!-- Group 2 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query2">Monthly Charges:</label>
-                        <input type="text" class="form-control small-text-box" id="query2" name="query2" value="{{ output2 }}">
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="senior_citizen">SeniorCitizen:</label>
+                            <select class="form-control" id="senior_citizen" name="query1">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query3">Total Charges:</label>
-                        <input type="text" class="form-control small-text-box" id="query3" name="query3" value="{{ output2 }}">
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="monthly_charges">Monthly Charges:</label>
+                            <input type="text" class="form-control" id="monthly_charges" name="query2">
+                        </div>
                     </div>
                 </div>
-                <!-- Row 3 -->
+                <!-- Group 3 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query5">Partner:</label>
-                        <select class="form-control small-select-box" id="query5" name="query5" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="total_charges">Total Charges:</label>
+                            <input type="text" class="form-control" id="total_charges" name="query3">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query6">Dependents:</label>
-                        <select class="form-control small-select-box" id="query6" name="query6" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="partner">Partner:</label>
+                            <select class="form-control" id="partner" name="query5">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- Row 4 -->
+                <!-- Group 4 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query7">Phone Service:</label>
-                        <select class="form-control small-select-box" id="query7" name="query7" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="dependents">Dependents:</label>
+                            <select class="form-control" id="dependents" name="query6">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query8">Multiple Lines:</label>
-                        <select class="form-control small-select-box" id="query8" name="query8" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                            <option value="No Phone Service">No Phone Service</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="phone_service">Phone Service:</label>
+                            <select class="form-control" id="phone_service" name="query7">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- Row 5 -->
+                <!-- Group 5 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query9">Internet Service:</label>
-                        <select class="form-control small-select-box" id="query9" name="query9" required>
-                            <option value="DSL">DSL</option>
-                            <option value="Fiber Optic">Fiber Optic</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="multiple_lines">Multiple Lines:</label>
+                            <select class="form-control" id="multiple_lines" name="query8">
+                                <option value="No phone service">No phone service</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query10">Online Security:</label>
-                        <select class="form-control small-select-box" id="query10" name="query10" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="internet_service">Internet Service:</label>
+                            <select class="form-control" id="internet_service" name="query9">
+                                <option value="DSL">DSL</option>
+                                <option value="Fiber optic">Fiber optic</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- Row 6 -->
+                <!-- Group 6 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query11">Online Backup:</label>
-                        <select class="form-control small-select-box" id="query11" name="query11" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="online_security">Online Security:</label>
+                            <select class="form-control" id="online_security" name="query10">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">No internet service</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query13">Tech Support:</label>
-                        <select class="form-control small-select-box" id="query13" name="query13" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="online_backup">Online Backup:</label>
+                            <select class="form-control" id="online_backup" name="query11">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">No internet service</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- Row 7 -->
+                <!-- Group 7 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query16">Contract:</label>
-                        <select class="form-control small-select-box" id="query16" name="query16" required>
-                            <option value="Month-to-month">Month-to-month</option>
-                            <option value="One year">One year</option>
-                            <option value="Two year">Two year</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="device_protection">Device Protection:</label>
+                            <select class="form-control" id="device_protection" name="query12">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">No internet service</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query17">Paperless Billing:</label>
-                        <select class="form-control small-select-box" id="query17" name="query17" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="tech_support">Tech Support:</label>
+                            <select class="form-control" id="tech_support" name="query13">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">No internet service</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- Row 8 -->
+                <!-- Group 8 -->
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="query18">Payment Method:</label>
-                        <select class="form-control small-select-box" id="query18" name="query18" required>
-                            <option value="Electronic check">Electronic check</option>
-                            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
-                            <option value="Credit card (automatic)">Credit card (automatic)</option>
-                            <option value="Mailed check">Mailed check</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="streaming_tv">Streaming TV:</label>
+                            <select class="form-control" id="streaming_tv" name="query14">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">No internet service</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="query19">Tenure:</label>
-                        <input type="text" class="form-control small-text-box" id="query19" name="query19" value="{{ output2 }}">
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="streaming_movies">Streaming Movies:</label>
+                            <select class="form-control" id="streaming_movies" name="query15">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">No internet service</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Centered Submit Button -->
-                <div class="form-group text-center">
+                <!-- Group 9 -->
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="contract">Contract:</label>
+                            <select class="form-control" id="contract" name="query16">
+                                <option value="Month-to-month">Month-to-month</option>
+                                <option value="One year">One year</option>
+                                <option value="Two year">Two year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="paperless_billing">Paperless Billing:</label>
+                            <select class="form-control" id="paperless_billing" name="query17">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Group 10 -->
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="payment_method">Payment Method:</label>
+                            <select class="form-control" id="payment_method" name="query18">
+                                <option value="Electronic check">Electronic check</option>
+                                <option value="Mailed check">Mailed check</option>
+                                <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                                <option value="Credit card (automatic)">Credit card (automatic)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group purple-border">
+                            <label for="tenure">Tenure:</label>
+                            <input type="text" class="form-control" id="tenure" name="query19">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center"> <!-- Add a div to center its content -->
                     <button type="submit" class="btn btn-primary" name="submit">SUBMIT</button>
                 </div>
+                
             </form>
         </div>
-    </div>
-
-    <!-- Prediction Box -->
-    <div class="container">
-            <u><h1 align="center">OUTPUT</h1></u>
+        <br>
+        <hr>
+        <h2 align="center"><u>OUTPUT</u></h2>
+        <br><br>
+        <!-- Output section -->
+        <!-- Output section -->
+<!-- Output section -->
+<div class="output-container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Prediction:</h3>
+            <!-- Output 1 with bold formatting inside textarea -->
+            <textarea class="form-control" rows="2" id="comment" name="query6" rows="2" cols="5" autofocus style="font-weight: bold;" readonly>{{output1}}</textarea>
             <br>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="prediction"><u>Prediction:</u></label>
-                    <br><br>
-                    <textarea class="form-control small-text-box" id="prediction" name="prediction" rows="3" cols="75" autofocus>{{ output1 }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="confidence"><u>Confidence:</u></label>
-                    <br><br>
-                    <textarea class="form-control small-text-box" id="confidence" name="confidence" rows="3" cols="75" autofocus>{{ output2 }}</textarea>
-                </div>
-            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3>Confidence:</h3>
+            <!-- Output 2 with bold formatting inside textarea -->
+            <textarea class="form-control" rows="2" id="comment" name="query7" rows="2" cols="5" autofocus style="font-weight: bold;" readonly>{{output2}}</textarea>
+        </div>
+    </div>
+</div>
+
     </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-#!/Users/yatish/Desktop/End-End-Telecommunication-Churn/myenv/bin/python3.11
+#!/Users/yatish/Desktop/MLProject-ChurnPrediction/myenv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
