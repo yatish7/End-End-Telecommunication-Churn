@@ -29,8 +29,8 @@
         
         label {
             font-weight: bold;
-            width: 200%; /* Make the label span the entire container width */
-            display: block; /* Ensure labels are on their own line */
+            width: 200%;
+            display: block;
         }
         
         .purple-border {
@@ -40,7 +40,6 @@
             background-color: #f2edf5;
         }
         
-        /* Textarea style */
         textarea, input[type="text"], select {
             width: 100%;
             padding: 10px;
@@ -55,11 +54,9 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            display: block; /* Make the button a block-level element */
-            margin-left:55%;
-                }
-        
-        
+            display: block;
+            margin-left: 55%;
+        }
         
         .btn-primary:hover {
             background-color: #0056b3;
@@ -67,57 +64,49 @@
         
         .output-group {
             margin-top: 20px;
-            margin-left:40%;
+            margin-left: 40%;
         }
         
         h1 {
             text-align: center;
             color: #333;
-            margin-left:25%;
+            margin-left: 25%;
         }
+        
         .form-row {
             display: flex;
             justify-content: space-between;
         }
-        
-        
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-<<<<<<< HEAD
-            <form action="/predict" method="POST">
-
-=======
             <form action="/" method="POST">
->>>>>>> 952441b5cb2c93016a37cd29acedcc2862536ade
                 <h1><u>TELECOM CHURN PREDICTION</u></h1>
                 <br>
-                <!-- Group 1 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="user_name">Your Name:</label>
-                            <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Enter your name (optional)">
+                            <input type="text" class="form-control" id="user_name" name="query1" placeholder="Enter your name (optional)">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="gender">Gender:</label>
-                            <select class="form-control" id="gender" name="query4">
+                            <select class="form-control" id="gender" name="query2">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <!-- Group 2 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="senior_citizen">SeniorCitizen:</label>
-                            <select class="form-control" id="senior_citizen" name="query1">
+                            <select class="form-control" id="senior_citizen" name="query3">
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
@@ -126,34 +115,32 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="monthly_charges">Monthly Charges:</label>
-                            <input type="text" class="form-control" id="monthly_charges" name="query2">
+                            <input type="text" class="form-control" id="monthly_charges" name="query4">
                         </div>
                     </div>
                 </div>
-                <!-- Group 3 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="total_charges">Total Charges:</label>
-                            <input type="text" class="form-control" id="total_charges" name="query3">
+                            <input type="text" class="form-control" id="total_charges" name="query5">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="partner">Partner:</label>
-                            <select class="form-control" id="partner" name="query5">
+                            <select class="form-control" id="partner" name="query6">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <!-- Group 4 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="dependents">Dependents:</label>
-                            <select class="form-control" id="dependents" name="query6">
+                            <select class="form-control" id="dependents" name="query7">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -162,29 +149,28 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="phone_service">Phone Service:</label>
-                            <select class="form-control" id="phone_service" name="query7">
+                            <select class="form-control" id="phone_service" name="query8">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <!-- Group 5 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="multiple_lines">Multiple Lines:</label>
-                            <select class="form-control" id="multiple_lines" name="query8">
-                                <option value="No phone service">No phone service</option>
-                                <option value="No">No</option>
+                            <select class="form-control" id="multiple_lines" name="query9">
                                 <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No phone service">No phone service</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="internet_service">Internet Service:</label>
-                            <select class="form-control" id="internet_service" name="query9">
+                            <select class="form-control" id="internet_service" name="query10">
                                 <option value="DSL">DSL</option>
                                 <option value="Fiber optic">Fiber optic</option>
                                 <option value="No">No</option>
@@ -192,12 +178,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Group 6 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="online_security">Online Security:</label>
-                            <select class="form-control" id="online_security" name="query10">
+                            <select class="form-control" id="online_security" name="query11">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No internet service">No internet service</option>
@@ -207,7 +192,7 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="online_backup">Online Backup:</label>
-                            <select class="form-control" id="online_backup" name="query11">
+                            <select class="form-control" id="online_backup" name="query12">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No internet service">No internet service</option>
@@ -215,12 +200,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Group 7 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="device_protection">Device Protection:</label>
-                            <select class="form-control" id="device_protection" name="query12">
+                            <select class="form-control" id="device_protection" name="query13">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No internet service">No internet service</option>
@@ -230,7 +214,7 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="tech_support">Tech Support:</label>
-                            <select class="form-control" id="tech_support" name="query13">
+                            <select class="form-control" id="tech_support" name="query14">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No internet service">No internet service</option>
@@ -238,12 +222,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Group 8 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="streaming_tv">Streaming TV:</label>
-                            <select class="form-control" id="streaming_tv" name="query14">
+                            <select class="form-control" id="streaming_tv" name="query15">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No internet service">No internet service</option>
@@ -253,7 +236,7 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="streaming_movies">Streaming Movies:</label>
-                            <select class="form-control" id="streaming_movies" name="query15">
+                            <select class="form-control" id="streaming_movies" name="query16">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No internet service">No internet service</option>
@@ -261,12 +244,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Group 9 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="contract">Contract:</label>
-                            <select class="form-control" id="contract" name="query16">
+                            <select class="form-control" id="contract" name="query17">
                                 <option value="Month-to-month">Month-to-month</option>
                                 <option value="One year">One year</option>
                                 <option value="Two year">Two year</option>
@@ -276,19 +258,18 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="paperless_billing">Paperless Billing:</label>
-                            <select class="form-control" id="paperless_billing" name="query17">
+                            <select class="form-control" id="paperless_billing" name="query18">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <!-- Group 10 -->
                 <div class="form-row">
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="payment_method">Payment Method:</label>
-                            <select class="form-control" id="payment_method" name="query18">
+                            <select class="form-control" id="payment_method" name="query19">
                                 <option value="Electronic check">Electronic check</option>
                                 <option value="Mailed check">Mailed check</option>
                                 <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
@@ -299,39 +280,33 @@
                     <div class="col-sm-6">
                         <div class="form-group purple-border">
                             <label for="tenure">Tenure:</label>
-                            <input type="text" class="form-control" id="tenure" name="query19">
+                            <input type="text" class="form-control" id="tenure" name="query20">
                         </div>
                     </div>
                 </div>
-                <div class="text-center"> <!-- Add a div to center its content -->
+                <div class="text-center">
                     <button type="submit" class="btn btn-primary" name="submit">SUBMIT</button>
                 </div>
-                
             </form>
         </div>
         <br>
         <hr>
         <h2 align="center"><u>OUTPUT</u></h2>
         <br><br>
-        <!-- Output section -->
-        <!-- Output section -->
-<!-- Output section -->
-<div class="output-container">
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Prediction:</h3>
-            <!-- Output 1 with bold formatting inside textarea -->
-            <textarea class="form-control" rows="2" id="comment" name="query6" rows="2" cols="5" autofocus style="font-weight: bold;" readonly>{{output1}}</textarea>
-            <br>
+        <div class="output-container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Prediction:</h3>
+                    <textarea class="form-control" rows="2" id="comment" name="query6" rows="2" cols="5" autofocus style="font-weight: bold;" readonly>{{output1}}</textarea>
+                    <br>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Confidence:</h3>
+                    <textarea class="form-control" rows="2" id="comment" name="query7" rows="2" cols="5" autofocus style="font-weight: bold;" readonly>{{output2}}</textarea>
+                    <br>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <h3>Confidence:</h3>
-            <!-- Output 2 with bold formatting inside textarea -->
-            <textarea class="form-control" rows="2" id="comment" name="query7" rows="2" cols="5" autofocus style="font-weight: bold;" readonly>{{output2}}</textarea>
-        </div>
-    </div>
-</div>
-
     </div>
 </body>
 </html>
